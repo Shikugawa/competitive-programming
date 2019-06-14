@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define MOD 1000000009
 
 using namespace std;
 
@@ -22,25 +21,23 @@ int main()
   ios::sync_with_stdio(false);
   cin.tie(0);
 
-  ll n;
+  int n;
   cin >> n;
-  vector<ll> a(n);
-  rep(i, n) cin >> a[i];
-
-  ll right = 0, cnt = n;
-
-  rep(left, n - 1)
+  vector<int> v(n);
+  for(int i = 0; i < n; ++i)
+    cin >> v[i];
+  int dp[n+1] = {0};
+  for(int i = 1; i <= n; ++i)
   {
-    while (right < n - 1 && a[right + 1] > a[right])
+    // cout << v[i] + dp[i-1] << endl;
+    if(v[i-1]+dp[i-1] > dp[i-1])
     {
-      ++right;
-      ++cnt;
-      cnt += (right - left) - 1;
+      dp[i] = dp[i-1] + v[i-1];
     }
-    if (left == right)
+    else
     {
-      ++right;
+      dp[i] = dp[i-1];
     }
   }
-  cout << cnt << endl;
+  cout << dp[n] << endl;
 }

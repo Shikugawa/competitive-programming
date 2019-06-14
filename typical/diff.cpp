@@ -17,30 +17,21 @@ ostream &operator<<(ostream &os, const vector<T> &vec)
   return os;
 }
 
+template <typename T>
+void print_table(ostream& os, const T dp[], int m, int n)
+{
+  for(int i = 0; i < m; ++i)
+  {
+    for(int j = 0; j < n; ++j)
+    {
+      cout << dp[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
+
 int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-
-  ll n;
-  cin >> n;
-  vector<ll> a(n);
-  rep(i, n) cin >> a[i];
-
-  ll right = 0, cnt = n;
-
-  rep(left, n - 1)
-  {
-    while (right < n - 1 && a[right + 1] > a[right])
-    {
-      ++right;
-      ++cnt;
-      cnt += (right - left) - 1;
-    }
-    if (left == right)
-    {
-      ++right;
-    }
-  }
-  cout << cnt << endl;
 }

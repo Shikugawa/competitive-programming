@@ -21,26 +21,26 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
-
-  ll n;
-  cin >> n;
-  vector<ll> a(n);
-  rep(i, n) cin >> a[i];
-
-  ll right = 0, cnt = n;
-
-  rep(left, n - 1)
+  int n, a;
+  cin >> n >> a;
+  vector<int> num(n);
+  rep(i, n) cin >> num[i];
+  int dp[n+1][a+1] = {0};
+  rep(i, a) dp[0][i] = -1;
+  rep(i, n) dp[i][0] = -1;
+  for(int i = 1; i <= n; ++i)
   {
-    while (right < n - 1 && a[right + 1] > a[right])
+    for(int j = 1; j <= a; ++j)
     {
-      ++right;
-      ++cnt;
-      cnt += (right - left) - 1;
-    }
-    if (left == right)
-    {
-      ++right;
+      if (num[i-1] < j)
+      {
+        dp[i][j] = min(dp[i-1][j-num[i-1]] + dp[i-1][j], dp[i-1][j]);
+      }
+      else
+      {
+        dp[i][j] = dp[i-1][j];
+      }
     }
   }
-  cout << cnt << endl;
+  cout << dp[n][a] << endl;
 }
