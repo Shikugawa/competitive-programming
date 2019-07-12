@@ -21,4 +21,27 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
+  ll n, m, min = 0, max = MOD, tmp_a, tmp_b;
+  cin >> n >> m;
+  rep(i, m)
+  {
+    cin >> tmp_a >> tmp_b;
+    if (min < tmp_a)
+    {
+      min = tmp_a;
+    }
+    if (max > tmp_b)
+    {
+      max = tmp_b;
+    }
+  }
+  
+  if (max >= min)
+  {
+    cout << max - min + 1 << endl;
+  }
+  else
+  {
+    cout << 0 << endl;
+  }
 }

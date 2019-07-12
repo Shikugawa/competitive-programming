@@ -21,4 +21,30 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
+  ll n, k, right = 0, result = 0, sum = 0, tmp;
+  cin >> n >> k;
+  vector<ll> d(n);
+  rep(i, n)
+  {
+     cin >> d[i];
+  }
+  rep(left, n)
+  {
+    while (sum + d[right] < k && right < n)
+    {
+      sum += d[right];
+      ++right;
+    }
+    
+    result += n - right;
+    if (left == right)
+    {
+      ++right;
+    }
+    else
+    {
+      sum -= d[left];
+    }
+  }
+  cout << result << endl;
 }

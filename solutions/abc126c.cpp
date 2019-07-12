@@ -21,4 +21,19 @@ int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(0);
+  ll n, k;
+  double result;
+  cin >> n >> k;
+  for(int i = 1; i <= n; ++i)
+  {
+    double r = 1.0/n;
+    ll cur = i;
+    while (cur < k)
+    {
+      cur *= 2;
+      r /= 2;
+    }
+    result += r;
+  }
+  printf("%.12f\n", result); //「絶対・相対誤差10^(-n)以下」と指定された場合は「小数点以下n+1桁目」まで出力すればよい
 }
