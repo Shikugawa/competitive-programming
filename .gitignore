@@ -36,3 +36,6 @@
 book/
 *.rb
 .vscode/
+
+*.bin
+*.lock
